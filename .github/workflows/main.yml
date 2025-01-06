@@ -1,0 +1,35 @@
+name: CI/CD for ML model to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main  # This will trigger the workflow only on pushes to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Log in to Hugging Face
+      run: |
+        echo ${{ secrets.HUGGINGFACE_API_TOKEN }} | huggy login --token
+      env:
+        HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
+
+    - name: Push to Hugging Face Space
+      run: |
+        # Push to Hugging Face Spaces using Hugging Face CLI
+        hf space push . --space-name manahilhassan9603/Ml_Model

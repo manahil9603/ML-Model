@@ -1,0 +1,12 @@
+from transformers import pipeline
+
+# Load the pre-trained sentiment-analysis pipeline
+classifier = pipeline('sentiment-analysis', model='distilbert-base-uncased')
+
+# Example text for analysis
+text = "I hate using Hugging Face's transformers library!"
+
+# Get prediction
+result = classifier(text)
+
+print(result)

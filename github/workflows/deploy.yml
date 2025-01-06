@@ -31,5 +31,5 @@ jobs:
 
     - name: Push to Hugging Face Space
       run: |
-        git remote add hf https://huggingface.co/spaces/manahilhassan9603/Ml_Model
-        git push hf main
+        # Push to Hugging Face Spaces using Hugging Face CLI
+        hf space push . --space-name manahilhassan9603/Ml_Model

@@ -30,13 +30,14 @@ jobs:
       env:
         HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
 
-    - name: Check if repository exists, create if it doesn't
+    - name: Check if repository exists and create it if not
       run: |
         python -c "
         from huggingface_hub import HfApi
         api = HfApi()
-        repo_id = 'manahilhassan9603/Ml_Model'
+        repo_id = 'manahilhassan9603/Ml-Model'
         try:
+            # Attempt to create the repo if it doesn't exist
             api.create_repo(
                 repo_id=repo_id, 
                 repo_type='space', 
@@ -58,6 +59,6 @@ jobs:
         from huggingface_hub import upload_folder
         upload_folder(
             folder_path='./',
-            repo_id='manahilhassan9603/Ml_Model',
+            repo_id='manahilhassan9603/Ml-Model',
             token='${{ secrets.HUGGINGFACE_API_TOKEN }}'
         )"

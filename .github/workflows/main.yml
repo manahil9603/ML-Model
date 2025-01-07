@@ -32,5 +32,5 @@ jobs:
 
     - name: Create Hugging Face Space
       run: |
-        huggingface-cli repo create manahilhassan9603/Ml_Model --type space --yes  # Correct format for the repo name
+        huggingface-cli repo create Ml_Model --type space --yes   # Correct format for the repo name
         hf space push . --space-name manahilhassan9603/Ml_Model

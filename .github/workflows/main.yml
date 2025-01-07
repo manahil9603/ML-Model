@@ -36,7 +36,7 @@ jobs:
         from huggingface_hub import HfApi
         api = HfApi()
         api.create_repo(
-            repo_id='manahilhassan9603/Ml-Model',  # Replace with your desired repo name
+            repo_id='manahilhassan9603/Ml_Model',  # Replace with your desired repo name
             repo_type='space',  # Type should be 'space' for Hugging Face Spaces
             space_sdk='gradio',  # Specify the SDK (gradio in this case)
         )"
@@ -45,4 +45,10 @@ jobs:
 
     - name: Push to Hugging Face Space
       run: |
-        huggingface-cli repo upload . --repo-id manahilhassan9603/Ml_Model
+        python -c "
+        from huggingface_hub import upload_folder
+        upload_folder(
+            folder_path='./',  # Path to the directory you want to upload
+            repo_id='manahilhassan9603/Ml_Model',  # Space name (repo ID)
+            token='${{ secrets.HUGGINGFACE_API_TOKEN }}'  # Use the API token stored in GitHub secrets
+        )"
